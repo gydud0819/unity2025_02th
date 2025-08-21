@@ -87,13 +87,13 @@ public abstract class Battle : MonoBehaviour
         // 0으로 초기화 된다.
         Debug.Log($"HP : {battleEntity.maxHP}, ATK : {battleEntity.ATK}, Def :{battleEntity.Def}");
         battleUI.SetBatteUI(battleEntity);
-        currentHP = battleEntity.maxHP;
+        CurrentHP = battleEntity.maxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        battleUI.SetHpBar(currentHP, battleEntity.maxHP);
+        battleUI.SetHpBar(CurrentHP, battleEntity.maxHP);
     }
 
     // 상대에게 데미지를 입힌다 (takeDamage) :: currentHP (atk, def에 따라서 감소)
@@ -102,7 +102,7 @@ public abstract class Battle : MonoBehaviour
         int finalDamge = (other.battleEntity.ATK - battleEntity.Def);
         if (finalDamge <= 0) finalDamge = 1;
 
-        currentHP -= (other.battleEntity.ATK - battleEntity.Def);    // 상대의 공격력
+        CurrentHP -= finalDamge;    // 상대의 공격력
 
         Debug.Log($"최종 데미지 : {finalDamge}, 공격자의 공격력 : {other.battleEntity}, 방어력 : {other.battleEntity.Def} ");
     }

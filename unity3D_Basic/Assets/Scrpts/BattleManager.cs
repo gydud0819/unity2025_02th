@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    // Enemy가 행동한다.
+    public Battle Player;
+    public Battle Enemy;
+
     // Turn 만들기 
 
     int turnValue;
@@ -13,6 +17,7 @@ public class BattleManager : MonoBehaviour
     public void TurnChange()
     {
         playerTurn = !playerTurn;
+        EnemyTurn();
     }
 
     public void EnemyTurn()
@@ -21,9 +26,7 @@ public class BattleManager : MonoBehaviour
         playerTurn = true;
     }
 
-    // Enemy가 행동한다.
-    public Battle Player;
-    public Battle Enemy;
+  
 
     public void EnemyAI()
     {

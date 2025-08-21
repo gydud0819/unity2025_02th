@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 527235022}
   - component: {fileID: 527235021}
   m_Layer: 5
-  m_Name: Recover
+  m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Recover
+  m_text: Paper
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 987558483}
   - component: {fileID: 987558482}
   m_Layer: 5
-  m_Name: Attack Button
+  m_Name: Rock Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -951,14 +951,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2040820758}
-        m_TargetAssemblyTypeName: Battle, Assembly-CSharp
-        m_MethodName: TakeDamage
+      - m_Target: {fileID: 1723075315}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1723075315}
+          m_ObjectArgument: {fileID: 2040820758}
           m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
-          m_IntArgument: 20
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 1038373011}
   - component: {fileID: 1038373010}
   m_Layer: 5
-  m_Name: ATK
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack
+  m_text: Rock
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1322,7 +1322,7 @@ GameObject:
   - component: {fileID: 1162753376}
   - component: {fileID: 1162753375}
   m_Layer: 5
-  m_Name: Defence Button
+  m_Name: Scissors Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,12 +1393,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1723075315}
-        m_TargetAssemblyTypeName: Battle, Assembly-CSharp
-        m_MethodName: ShieldDef
-        m_Mode: 3
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2040820758}
+          m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
           m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1840,6 +1840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1214725627}
+  - component: {fileID: 1214725628}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -1862,6 +1863,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1214725628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214725626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299f0477adb93f2459ce1df15b866991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1723075315}
+  Enemy: {fileID: 2040820758}
+  playerTurn: 1
 --- !u!1 &1352119116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,7 +2202,7 @@ GameObject:
   - component: {fileID: 1440247395}
   - component: {fileID: 1440247394}
   m_Layer: 5
-  m_Name: DEF
+  m_Name: Sicssors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2231,7 +2247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defence
+  m_text: Sicssors
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2321,7 +2337,7 @@ GameObject:
   - component: {fileID: 1651292793}
   - component: {fileID: 1651292792}
   m_Layer: 5
-  m_Name: Recover Button
+  m_Name: Paper Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2392,12 +2408,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1723075315}
-        m_TargetAssemblyTypeName: Battle, Assembly-CSharp
-        m_MethodName: Recover
-        m_Mode: 3
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2040820758}
+          m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
           m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2674,15 +2690,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleEntity:
     maxHP: 100
-    ATK: 5
+    ATK: 10
     Def: 20
     AttackType: 
   battleUI:
     hpBar: {fileID: 866002001}
     AttackText: {fileID: 381236847}
     DefText: {fileID: 1148768167}
-  battleManager: {fileID: 0}
-  IsPlayer: 0
+  battleManager: {fileID: 1214725628}
   currentHP: 0
 --- !u!4 &1723075316
 Transform:
@@ -2737,8 +2752,7 @@ MonoBehaviour:
     hpBar: {fileID: 8789458}
     AttackText: {fileID: 1669291456}
     DefText: {fileID: 1183196593}
-  battleManager: {fileID: 0}
-  IsPlayer: 0
+  battleManager: {fileID: 1214725628}
   currentHP: 0
 --- !u!4 &2040820759
 Transform:

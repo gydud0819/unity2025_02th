@@ -18,18 +18,6 @@ public class Enemy : Battle
         other.TakeDamage(this);
     }
 
-    //public override void Attack()
-    //{
-    //    // battleManager에서 playerTurn이라면 실행하지 말기
-    //    if (battleManager.playerTurn) return;
-    //
-    //    //base.Attack();      // 몬스터의 공격 로직 실행 후
-    //
-    //    Debug.Log("Monster Attack");
-    //
-    //    // battleManager에서 턴을 종료한다. - 몬스터는 할 필요 없음 
-    //}
-
     public override void Recover(int amount)
     {
         if (battleManager.playerTurn) return;

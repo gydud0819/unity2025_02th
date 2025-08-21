@@ -21,12 +21,6 @@ public class Player : Battle
 
     }
 
-    //public override void Attack()
-    //{
-    //    if (!battleManager.playerTurn) return;
-    //    base.Attack();
-    //    battleManager.TurnChange();
-    //}
 
     public override void Recover(int amount)
     {
