@@ -951,14 +951,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1723075315}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Attack
+      - m_Target: {fileID: 2040820758}
+        m_TargetAssemblyTypeName: Battle, Assembly-CSharp
+        m_MethodName: TakeDamage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2040820758}
+          m_ObjectArgument: {fileID: 1723075315}
           m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
-          m_IntArgument: 0
+          m_IntArgument: 20
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1840,7 +1840,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1214725627}
-  - component: {fileID: 1214725628}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -1863,21 +1862,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1214725628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214725626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299f0477adb93f2459ce1df15b866991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTurn: 1
-  Player: {fileID: 1723075315}
-  Enemy: {fileID: 2040820758}
 --- !u!1 &1352119116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,14 +2674,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleEntity:
     maxHP: 100
-    ATK: 10
+    ATK: 5
     Def: 20
     AttackType: 
   battleUI:
     hpBar: {fileID: 866002001}
     AttackText: {fileID: 381236847}
     DefText: {fileID: 1148768167}
-  battleManager: {fileID: 1214725628}
+  battleManager: {fileID: 0}
+  IsPlayer: 0
   currentHP: 0
 --- !u!4 &1723075316
 Transform:
@@ -2752,7 +2737,8 @@ MonoBehaviour:
     hpBar: {fileID: 8789458}
     AttackText: {fileID: 1669291456}
     DefText: {fileID: 1183196593}
-  battleManager: {fileID: 1214725628}
+  battleManager: {fileID: 0}
+  IsPlayer: 0
   currentHP: 0
 --- !u!4 &2040820759
 Transform:

@@ -12,5 +12,33 @@ using UnityEngine;
 
 public class Player : Battle
 {
-    
+    public override void Attack(Battle other)
+    {
+        //throw new System.NotImplementedException();
+        if (!battleManager.playerTurn) return;      // 예외코드
+        other.TakeDamage(this);     // 
+        battleManager.TurnChange();
+
+    }
+
+    //public override void Attack()
+    //{
+    //    if (!battleManager.playerTurn) return;
+    //    base.Attack();
+    //    battleManager.TurnChange();
+    //}
+
+    public override void Recover(int amount)
+    {
+        if (!battleManager.playerTurn) return;
+        base.Recover(amount);
+        battleManager.TurnChange();
+    }
+
+    public override void ShieldDef(int amount)
+    {
+        if (!battleManager.playerTurn) return;
+        base.ShieldDef(amount);
+        battleManager.TurnChange();
+    }
 }

@@ -15,19 +15,26 @@ public class BattleManager : MonoBehaviour
         playerTurn = !playerTurn;
     }
 
-    // Enemy가 행동한다.
+    public void EnemyTurn()
+    {
+        EnemyAI();
+        playerTurn = true;
+    }
 
+    // Enemy가 행동한다.
+    public Battle Player;
     public Battle Enemy;
 
     public void EnemyAI()
     {
         // 랜덤으로 0~2 숫자를 받아온다. 
         int RandomValue = UnityEngine.Random.Range(0, 3);
+       // Debug.Log($"랜덤 값의 정확성 확인  {RandomValue}");
 
         switch (RandomValue)
         {
             case 0:
-                //Enemy.Attak();
+                Enemy.Attack(Player);
                 break;
             case 1:
                 Enemy.Recover(10);

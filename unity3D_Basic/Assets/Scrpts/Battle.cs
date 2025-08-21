@@ -28,7 +28,7 @@ public class BattleUI
     public Image hpBar;
     public TextMeshProUGUI AttackText;
     public TextMeshProUGUI DefText;
-    public void SetBatte(BattleEntity battleEntity)
+    public void SetBatteUI(BattleEntity battleEntity)
     {
         AttackText.SetText($"ATK : {battleEntity.ATK}");
         DefText.SetText($"Def :{battleEntity.Def}");
@@ -40,13 +40,23 @@ public class BattleUI
     }
 }
 
-public class Battle : MonoBehaviour
+
+// 추상 클래스 : abstract를 붙인 클래스를 인스턴스 할 수 없다.
+// 이 클래스를 오브젝트의 컴포넌트로 사용하지 말라는 의미이다.
+// Player, Enemy를 사용해서 클래스를 구현해라
+// abstract : 메소드에 abstract 키워드를 추가할 수 있다. 
+
+/*
+ * abstract vs virtual
+ * abstract 가상 함수 : 본문을 가질 수 없다. - 자식 클래스에서 구현을 해야한다.
+ * virtual 가상 함수 : 본문을 가질 수 있다. - 자식 클래스에서 코드를 사용 안할 수도 있고, base 키워드를 이용해 사용할 수 있다.
+ */
+public abstract class Battle : MonoBehaviour
 {
     public BattleEntity battleEntity;
     public BattleUI battleUI;
     public BattleManager battleManager;
 
-    public bool IsPlayer;
     public int CurrentHP
     {   // 배틀 클래스에서만 현재 체력을 수정할 수 있다. 
         get
@@ -62,21 +72,21 @@ public class Battle : MonoBehaviour
         private set
         {
             if (value > battleEntity.maxHP) value = battleEntity.maxHP;
-         
+
             currentHP = value;
         }
     }
 
     [SerializeField] private int currentHP;
 
-   // [SerializeField] private int Something;
+    // [SerializeField] private int Something;
     //[field: SerializeField] public int SomeThing { get; set; }
     // Start is called before the first frame update
     void Start()
     {
         // 0으로 초기화 된다.
         Debug.Log($"HP : {battleEntity.maxHP}, ATK : {battleEntity.ATK}, Def :{battleEntity.Def}");
-        battleUI.SetBatte(battleEntity);
+        battleUI.SetBatteUI(battleEntity);
         currentHP = battleEntity.maxHP;
     }
 
@@ -99,23 +109,22 @@ public class Battle : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log($"사망했습니다 : { currentHP}");
+        Debug.Log($"사망했습니다 : {currentHP}");
     }
 
-    public void Recover(int amount)
+    public abstract void Attack(Battle other);
+   
+    public virtual void Recover(int amount)
     {
-        if (IsPlayer&& !battleManager.playerTurn) return;
-       currentHP += amount;     // amount 수치만큼 회복
-       
+        CurrentHP += amount;     // amount 수치만큼 회복
+
     }
 
-    public void ShieldDef(int amount)
+    public virtual void ShieldDef(int amount)
     {
-        if (IsPlayer && !battleManager.playerTurn) return;
-       
         battleEntity.Def += amount;
-        battleUI.SetBatte(battleEntity);
-        
+        battleUI.SetBatteUI(battleEntity);
+
     }
     // 죽었을 때 로직 처리하기 (Die)
 }
