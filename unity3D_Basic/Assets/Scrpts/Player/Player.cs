@@ -10,29 +10,36 @@ using UnityEngine;
 // 우리가 직접 정의한 클래스 정보를 유니티에서 읽어올 수 없기 때문에, 유니티 인스펙터창에서 노출할 수 없다.
 // 유니티가 우리가 정의한 정보를 읽을 수 있도록 조치를 취하면 된다. (이진수로 바꿔서 읽을 수 있도록 한다)
 
-public class Player : Battle
+
+namespace BattleExam
 {
-    public override void Attack(Battle other)
+    public class Player : Battle
     {
-        //throw new System.NotImplementedException();
-        if (!battleManager.playerTurn) return;      // 예외코드
-        other.TakeDamage(this);     // 
-        battleManager.TurnChange();
+        public override void Attack(Battle other)
+        {
+            //throw new System.NotImplementedException();
+            if (!battleManager.playerTurn) return;      // 예외코드
+            other.TakeDamage(this);     // 
+            battleManager.TurnChange();
 
+        }
+
+
+        public override void Recover(int amount)
+        {
+            if (!battleManager.playerTurn) return;
+            base.Recover(amount);
+            battleManager.TurnChange();
+        }
+
+        public override void ShieldDef(int amount)
+        {
+            if (!battleManager.playerTurn) return;
+            base.ShieldDef(amount);
+            battleManager.TurnChange();
+        }
     }
 
 
-    public override void Recover(int amount)
-    {
-        if (!battleManager.playerTurn) return;
-        base.Recover(amount);
-        battleManager.TurnChange();
-    }
 
-    public override void ShieldDef(int amount)
-    {
-        if (!battleManager.playerTurn) return;
-        base.ShieldDef(amount);
-        battleManager.TurnChange();
-    }
 }

@@ -367,7 +367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ATK : 100'
+  m_text: 'ATK : 10'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -519,6 +519,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414260249}
   m_CullTransparentMesh: 1
+--- !u!1 &419916869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419916871}
+  - component: {fileID: 419916870}
+  m_Layer: 0
+  m_Name: RSPBattleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &419916870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419916869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406b97ddb1012894587e9cf2ccebe3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rspPlayer: {fileID: 1723075317}
+  rspEnemy: {fileID: 2040820760}
+--- !u!4 &419916871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419916869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 848.9119, y: 869.5343, z: 2.002138}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527235019
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,13 +997,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1723075315}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1723075317}
+        m_TargetAssemblyTypeName: RSPPlayer, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2040820758}
-          m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
+          m_ObjectArgument: {fileID: 2040820760}
+          m_ObjectArgumentAssemblyTypeName: RSPBattle, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1192,7 +1238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1148768166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1392,13 +1438,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1723075315}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1723075317}
+        m_TargetAssemblyTypeName: RSPPlayer, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2040820758}
-          m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
+          m_ObjectArgument: {fileID: 2040820760}
+          m_ObjectArgumentAssemblyTypeName: RSPBattle, Assembly-CSharp
           m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1714,7 +1760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1183196592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1847,7 +1893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1214725627
 Transform:
   m_ObjectHideFlags: 0
@@ -2407,13 +2453,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1723075315}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1723075317}
+        m_TargetAssemblyTypeName: RSPPlayer, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2040820758}
-          m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
+          m_ObjectArgument: {fileID: 2040820760}
+          m_ObjectArgumentAssemblyTypeName: RSPBattle, Assembly-CSharp
           m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2514,7 +2560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ATK : 100'
+  m_text: 'ATK : 10'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2669,6 +2715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723075316}
   - component: {fileID: 1723075315}
+  - component: {fileID: 1723075317}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2683,7 +2730,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723075314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7892279013fe754fb0c5146c9f9975f, type: 3}
   m_Name: 
@@ -2714,6 +2761,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723075317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723075314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16965b41c032a2d4f8c134d7a4f25219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleEntity:
+    maxHP: 100
+    ATK: 10
+  battleUI:
+    hpBar: {fileID: 866002001}
+    AttackText: {fileID: 381236847}
+  currentHP: 0
 --- !u!1 &2040820757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,6 +2790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2040820759}
   - component: {fileID: 2040820758}
+  - component: {fileID: 2040820760}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2738,7 +2805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040820757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7da58f05828ba7043b5840ae957bb85b, type: 3}
   m_Name: 
@@ -2769,6 +2836,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2040820760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040820757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ec1668a2a3627b4ba810839cd25be12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleEntity:
+    maxHP: 100
+    ATK: 10
+  battleUI:
+    hpBar: {fileID: 8789458}
+    AttackText: {fileID: 1669291456}
+  currentHP: 0
 --- !u!1 &2042618130
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,3 +3011,4 @@ SceneRoots:
   - {fileID: 2042618134}
   - {fileID: 1678108087}
   - {fileID: 1214725627}
+  - {fileID: 419916871}
