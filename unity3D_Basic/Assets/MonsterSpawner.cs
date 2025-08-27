@@ -11,6 +11,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] GameObject[] monsterSpwaners;
     [SerializeField] int spwanCount = 5;
     [SerializeField] float spwanIntervalTime = 0.75f;
+   
 
     private Coroutine spwanCoroutine;
 

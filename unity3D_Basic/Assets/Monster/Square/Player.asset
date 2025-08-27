@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f225f1336eef0d94aa78cd6f2732ebbc, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: Assembly-CSharp:Example:MonsterInfo
+  speed: 5
+  sprite: {fileID: -1316033044, guid: 6e639e7a8802b2843a68fed268401bf7, type: 3}
+  Size: 1.5
+  monsterName: player
+  collider: {fileID: 0}
