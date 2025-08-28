@@ -30,7 +30,7 @@ namespace Example
         }
 
         [ContextMenu("캐릭터 객체 생성")]
-        private void MonsterConstructor()
+        public void MonsterConstructor()
         {
             GameObject instance = new GameObject();
             instance.transform.localScale = Vector3.one * monsterInfo.Size;

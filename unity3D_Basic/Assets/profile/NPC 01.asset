@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd5904c6be4c02439b65d980e7ad6f3, type: 3}
+  m_Name: NPC 01
+  m_EditorClassIdentifier: 
+  MinSpeed: 1
+  MaxSpeed: 1
+  PatrolRadius: 2
+  NpcName: N1
+  Sprite: {fileID: -712657564, guid: 6e639e7a8802b2843a68fed268401bf7, type: 3}
