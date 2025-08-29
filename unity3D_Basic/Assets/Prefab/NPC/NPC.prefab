@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcInfo: {fileID: 11400000, guid: 7809ebbedb00a3c48bbc34f696298873, type: 2}
+  stopDistance: 0.01
+  patrolDistance: 2
+  currentTargetPos: {x: 0, y: 0}
+  isMoving: 0
 --- !u!212 &4556120925357480005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126,7 +130,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &6947518807474560499
 CircleCollider2D:
   m_ObjectHideFlags: 0

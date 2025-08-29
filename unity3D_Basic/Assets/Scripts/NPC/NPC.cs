@@ -14,7 +14,14 @@ public class NPC : MonoBehaviour
     SpriteRenderer spriteRenderer;
     CircleCollider2D circleCollider;
     Rigidbody2D rigidbody2D;
-    private Vector2 currentTargetPos;       // 언제 멈춰야할지 
+ 
+
+    [SerializeField] private Vector2 currentTargetPos;       // 언제 멈춰야할지 
+    [SerializeField] private bool isMoving;                 // 목적지에 도착 후 한번만 위치를 재설정 하기위한 변수
+
+    private Transform playerPos;
+
+    // 정찰, 추적 기능
 
 
     public void Awake()
@@ -32,14 +39,37 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
-        Patrol();
+        SetRandomPos();
+
     }
 
     private void Update()
     {
         // 목적지까지 이동 후 멈추기
-        Stop();
+
+        // 언제 정찰을 할 것인지, 현재 플레이어와의 거리에 따라 정찰할지 추적할지 정하기
+        if (isPatrol())
+            Patrol();
+        //else if(/*공격 최소 거리*/)
+            // 스턴 걸기
+        else
+            Chase();
+        // 언제 추적할 것인지
     }
+
+    // 현재 상태를 체크해주는 함수
+    bool isPatrol()
+    {
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < npcInfo.PatrolDistance)
+            return false;
+        else
+            return true;
+        
+    }
+
+
 
     public void Patrol()    // Patrol : 정찰하다
     {
@@ -47,24 +77,22 @@ public class NPC : MonoBehaviour
         MoveTargetPoint();
 
         // 특정 장소에 도착 후 일정 시간 대기
-        WaitTime(3);
 
     }
 
-    public void Stop()
+    public void Chase()
     {
-        // 특정 범위를 벗어나면? 또는 특정 위치에 도착을 했다면
-        //if ()
-        //{
-        //    // vector 클래스 안에 distance 함수가 존재한다 
-        //    // distance함수를 이용해서 특정 위치에 도달하면 멈추는 코드 만들기
-        //    rigidbody2D.velocity = Vector2.zero;
-        //}
+        // 플레이어를 받아와야 한다.
+        // 어떻게 받아올 것인지, 게임오브젝트의 이름이 player, tag가 player오브젝트를 전달해준다.
+
+        SetPostion(playerPos.position);
+        MoveTargetPoint();
     }
 
     public void WaitTime(float time)
     {
-
+        // 대기 시간이면 스턴같은거 해도될려나 
+        // 몹이 플레이어와의 거리가 2이하면 몹을 2초 동안 스턴걸고 플레이어는 도망가고
     }
 
     private void MoveTargetPoint()
@@ -72,12 +100,68 @@ public class NPC : MonoBehaviour
         // 속도의 랜덤값 구현
         int moveSpeed = UnityEngine.Random.Range(npcInfo.MinSpeed, npcInfo.MaxSpeed);
         // 위치의 랜덤값 구현
-        Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle * npcInfo.PatrolRadius;        // 반지름이 1일 때 랜덤값을 반환하는 코드
-        currentTargetPos = randomPos;
-        //Debug.Log(randomPos);
 
         // 이동 속도, 이동해야할 위치, 현재 위치 (이동해야할 방향)
         // 방향 * 속도 = 이동
-        rigidbody2D.velocity = (randomPos - (Vector2)transform.position).normalized * moveSpeed;   // 두 벡터 위치 값과 속도를 사용해서 코드 구현하기 
+
+        // 목적지까지 도착했다면 멈추기
+        if (Vector2.Distance(transform.position, currentTargetPos) < npcInfo.StopDistance)      // 0.1 : 대상과의 멈추기 위한 거리 StopDistance
+        {
+            rigidbody2D.velocity = Vector2.zero;
+            isMoving = true;
+            // 잠시 기다리는 시간 부여하기
+            //if (isMoving)    // 한번만 실행하게 하기 위해서
+            //{
+            //    StartCoroutine(SetRandomPosCoroutine());
+            //
+            //}
+            SetRandomPos();
+            //Invoke(nameof(SetRandomPos), 1f);       // 단순한 지연 함수를 사용할때 좋음
+        }
+        else
+        {
+            // 그렇지 않으면 계속 이동하기
+            rigidbody2D.velocity = (currentTargetPos - (Vector2)transform.position).normalized * moveSpeed;   // 두 벡터 위치 값과 속도를 사용해서 코드 구현하기 
+
+        }
+
+
+    }
+
+    private void SetRandomPos()     // 이동해야할 랜덤 위치 함수 
+    {
+        currentTargetPos = (Vector2)transform.position + Random.insideUnitCircle * npcInfo.PatrolRadius;        // 반지름이 1일 때 랜덤값을 반환하는 코드
+    }
+
+    public void SetPostion(Vector2 position)
+    {
+        currentTargetPos = position;
+    }
+
+    private IEnumerator SetRandomPosCoroutine()
+    {
+        // 1초가 되기 전에 
+        isMoving = false;
+        yield return new WaitForSeconds(1f);
+        SetRandomPos();
+    }
+
+    private void OnDrawGizmos()
+    {
+        //DrawChaseCircle();
+    }
+
+    // 기즈모를 그리는 특수한 함수
+    private void OnDrawGizmosSelected()     // selected가 붙은 기즈모 함수를 사용하는 게 좋음
+    {
+        DrawChaseCircle();
+    }
+
+    private void DrawChaseCircle()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, npcInfo.PatrolRadius);
+
+
     }
 }
