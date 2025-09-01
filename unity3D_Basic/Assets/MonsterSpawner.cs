@@ -55,7 +55,6 @@ public class MonsterSpawner : MonoBehaviour
         newMonster.monsterInfo = monsterInfos[random];         // monsterInfos 배열중에서 하나를 선택하라는 의미
         return newMonster;
 
-
     }
 
     public void Spawn()
