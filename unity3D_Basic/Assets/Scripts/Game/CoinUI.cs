@@ -11,22 +11,31 @@ public class CoinUI : MonoBehaviour
     // 코인이 변경되엇을때만 실행되도록
     private void OnEnable()
     {
-        Bus<IGetCoin>.OnEvent += HandleGetCoin;
+        Bus<IGetCoinEvent>.OnEvent += HandleGetCoin;
     }
 
     private void OnDisable()
     {
-        Bus<IGetCoin>.OnEvent -= HandleGetCoin;
+        Bus<IGetCoinEvent>.OnEvent -= HandleGetCoin;
     }
     private void Start()
     {
         currentCoin = 0;        // 
-        Bus<IGetCoin>.Raise(new IGetCoin(0));
+        Bus<IGetCoinEvent>.Raise(new IGetCoinEvent());
     }
 
-    private void HandleGetCoin(IGetCoin evt)
+    private void HandleGetCoin(IGetCoinEvent evt)
     {
-        currentCoin += evt.Value;
+        if (evt.Coin == null) 
+        {
+            Debug.LogWarning("Coin의 정보가 없음", this);
+            currentCoin += 0;
+        }
+        else
+        {
+            currentCoin += evt.Coin.Value;
+
+        }
         coinText.SetText($"Current Coin : {currentCoin}");
     }
 }

@@ -17,5 +17,6 @@ MonoBehaviour:
   PatrolRadius: 1
   StopDistance: 0.1
   PatrolDistance: 5
-  NpcName: N2
+  NpcName: Mark
   Sprite: {fileID: -100798049, guid: 6e639e7a8802b2843a68fed268401bf7, type: 3}
+  NPCDialogue: I'm Mark

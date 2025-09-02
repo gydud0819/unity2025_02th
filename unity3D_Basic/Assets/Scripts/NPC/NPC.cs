@@ -5,21 +5,28 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;      // Random을 사용하면  UnityEngine.Random를 사용한다는 의미로 간주한다.
 
+public enum CollisionEvent
+{
+    Friendly, hostile, Undefined
+}
+
 public class NPC : MonoBehaviour
 {
-    [SerializeField] NPCInfo npcInfo;
+    [SerializeField] public NPCInfo npcInfo;
+    [SerializeField] CollisionEvent collisionEvent = CollisionEvent.Undefined;
 
 
     // 클래스가 부착되어 있는 오브젝트의 다른 컴포넌트를 참조해서 사용할 수 있다.
     SpriteRenderer spriteRenderer;
     CircleCollider2D circleCollider;
     Rigidbody2D rigidbody2D;
- 
+
 
     [SerializeField] private Vector2 currentTargetPos;       // 언제 멈춰야할지 
     [SerializeField] private bool isMoving;                 // 목적지에 도착 후 한번만 위치를 재설정 하기위한 변수
 
     private Transform playerPos;
+
 
     // 정찰, 추적 기능
 
@@ -51,7 +58,7 @@ public class NPC : MonoBehaviour
         if (isPatrol())
             Patrol();
         //else if(/*공격 최소 거리*/)
-            // 스턴 걸기
+        // 스턴 걸기
         else
             Chase();
         // 언제 추적할 것인지
@@ -66,7 +73,7 @@ public class NPC : MonoBehaviour
             return false;
         else
             return true;
-        
+
     }
 
 
@@ -162,6 +169,28 @@ public class NPC : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, npcInfo.PatrolRadius);
 
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (collisionEvent == CollisionEvent.Friendly)
+            {
+                Debug.Log("친화적인 이벤트 발생");
+                Bus<ICollsionPlayerEvent>.Raise(new ICollsionPlayerEvent(this));
+                gameObject.SetActive(false);
+            }
+            else if(collisionEvent == CollisionEvent.hostile)
+            {
+                Debug.Log("적대적인 이벤트 발생");
+                Bus<ICollsionPlayerEvent>.Raise(new ICollsionPlayerEvent(this));
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.LogWarning("정의되지 않은 이벤트가 발생했습니다");
+            }
+        }
     }
 }

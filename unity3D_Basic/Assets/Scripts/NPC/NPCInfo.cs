@@ -12,5 +12,6 @@ public class NPCInfo : ScriptableObject
     public float PatrolDistance = 5f;   // 이건 직접 계산한 최소 거리
     public string NpcName;
     public Sprite Sprite;
+    public string NPCDialogue;
   
 }

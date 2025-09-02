@@ -15,5 +15,8 @@ MonoBehaviour:
   MinSpeed: 1
   MaxSpeed: 1
   PatrolRadius: 2
-  NpcName: N1
+  StopDistance: 0.1
+  PatrolDistance: 5
+  NpcName: Roy
   Sprite: {fileID: -712657564, guid: 6e639e7a8802b2843a68fed268401bf7, type: 3}
+  NPCDialogue: hi, i'm Roy
