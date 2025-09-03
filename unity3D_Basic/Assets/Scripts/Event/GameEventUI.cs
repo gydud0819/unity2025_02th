@@ -13,16 +13,29 @@ public class GameEventUI : MonoBehaviour
     public TextMeshProUGUI NPCName;
     public TextMeshProUGUI NPCDialogue;
 
+    [Header("GameOver UI")]
+    public GameObject gameOverPanel;
+
+
     private void OnEnable()
     {
         Bus<ICollsionPlayerEvent>.OnEvent += HandleNPCUI;
+        Bus<IGameOverEvent>.OnEvent += NPCOver;
     }
 
     private void OnDisable()
     {
         Bus<ICollsionPlayerEvent>.OnEvent -= HandleNPCUI;
+        Bus<IGameOverEvent>.OnEvent -= NPCOver;
+
+    }
+
+    private void NPCOver(IGameOverEvent evt)
+    {
         
     }
+
+    
 
     private void Start()
     {
@@ -35,7 +48,7 @@ public class GameEventUI : MonoBehaviour
         NPCSprite.sprite = evt.NPC.npcInfo.Sprite;
         NPCName.SetText(evt.NPC.npcInfo.NpcName);
         NPCDialogue.SetText(evt.NPC.npcInfo.NPCDialogue);
-       
+
 
     }
 }

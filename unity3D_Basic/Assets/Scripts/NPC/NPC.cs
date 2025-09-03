@@ -181,7 +181,7 @@ public class NPC : MonoBehaviour
                 Bus<ICollsionPlayerEvent>.Raise(new ICollsionPlayerEvent(this));
                 gameObject.SetActive(false);
             }
-            else if(collisionEvent == CollisionEvent.hostile)
+            else if (collisionEvent == CollisionEvent.hostile)
             {
                 Debug.Log("적대적인 이벤트 발생");
                 Bus<ICollsionPlayerEvent>.Raise(new ICollsionPlayerEvent(this));
@@ -191,6 +191,8 @@ public class NPC : MonoBehaviour
             {
                 Debug.LogWarning("정의되지 않은 이벤트가 발생했습니다");
             }
+            Bus<IScoreUpdateEvent>.Raise(new IScoreUpdateEvent(10));        // 이벤트를 발생시키라고 하는 명령 코드 (느슨하게 해야함)
+            ScoreManager.instance.Score += 5;       // 직접 ScoreManager 데이터를 수정하는 코드
         }
     }
 }
