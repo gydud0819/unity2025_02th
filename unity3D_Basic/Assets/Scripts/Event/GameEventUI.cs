@@ -16,31 +16,42 @@ public class GameEventUI : MonoBehaviour
     [Header("GameOver UI")]
     public GameObject gameOverPanel;
 
+    [Header("GameClear UI")]
+    public GameObject gameClearPanel;
 
     private void OnEnable()
     {
         Bus<ICollsionPlayerEvent>.OnEvent += HandleNPCUI;
-        Bus<IGameOverEvent>.OnEvent += NPCOver;
+        Bus<IGameOverEvent>.OnEvent += HandleGameOverUI;
+        Bus<IGameClearEvent>.OnEvent += HandleGameClearUI;
     }
 
     private void OnDisable()
     {
         Bus<ICollsionPlayerEvent>.OnEvent -= HandleNPCUI;
-        Bus<IGameOverEvent>.OnEvent -= NPCOver;
+        Bus<IGameOverEvent>.OnEvent -= HandleGameOverUI;
+        Bus<IGameClearEvent>.OnEvent -= HandleGameClearUI;
 
     }
 
-    private void NPCOver(IGameOverEvent evt)
+    private void HandleGameClearUI(IGameClearEvent evt)
     {
-        
+        gameClearPanel.SetActive(true);
     }
 
-    
+    private void HandleGameOverUI(IGameOverEvent evt)
+    {
+        Time.timeScale = 0;     // Time.scale을 원상태로 돌려주기
+        gameOverPanel.SetActive(true);
+    }
 
     private void Start()
     {
         NPCPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        gameClearPanel.SetActive(false);
     }
+
     private void HandleNPCUI(ICollsionPlayerEvent evt)
     {
         NPCPanel.SetActive(true);
