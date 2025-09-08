@@ -17,16 +17,28 @@ public class Entity_Stats : MonoBehaviour
     private void Awake()
     {
         StatsData = (Entity_statsData)statsData.Clone();
-        StatsData.MaxSpeed.AddModifier(4, "Item");      // 아이템으로 인해 속도가 4 증가함
 
-        
     }
 
-    private void Update()
+    public Stats GetStatType(StatType type)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        switch (type)
         {
+            case StatType.MaxSpeed: return StatsData.MaxSpeed;
+            case StatType.Acceleration: return StatsData.Acceleration;
+            case StatType.Power: return StatsData.Power;
+            case StatType.Control: return StatsData.Control;
+            
 
+            case StatType.Undefined:
+                {
+                    Debug.LogError("지정된 StatType이 존재하지 않음");
+                    return null;
+                }
+
+               
+            default: return null;
         }
     }
+
 }

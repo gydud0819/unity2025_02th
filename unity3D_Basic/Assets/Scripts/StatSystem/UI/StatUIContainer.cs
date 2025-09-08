@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,26 @@ public class StatUIContainer : MonoBehaviour
     private void Start()
     {
         // MaxSpeed = 2, Acceleration = 5, Power = 3, Control = 5
+        StatUpdate();
+    }
+    private void OnEnable()
+    {
+        Bus<IStatUpdateEvent>.OnEvent += OnStatUpdate;
+    }
+
+    private void OnDisable()
+    {
+        Bus<IStatUpdateEvent>.OnEvent -= OnStatUpdate;
+
+    }
+
+    private void OnStatUpdate(IStatUpdateEvent evt)
+    {
+        StatUpdate();
+    }
+
+    private void StatUpdate()
+    {
         stats[0].SetUI(playerStat.StatsData.MaxSpeed.GetValue());
         stats[1].SetUI(playerStat.StatsData.Acceleration.GetValue());
         stats[2].SetUI(playerStat.StatsData.Power.GetValue());
